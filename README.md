@@ -12,3 +12,5 @@ Instalación de los paquetes "dependencia de desarrollo -D"
 - npm install mini-css-extract-plugin css-loader -D
 
 - npm install stylus stylus-loader -D
+
+- npm install copy-webpack-plugin -D
