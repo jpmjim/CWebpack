@@ -14,3 +14,5 @@ Instalación de los paquetes "dependencia de desarrollo -D"
 - npm install stylus stylus-loader -D
 
 - npm install copy-webpack-plugin -D
+
+- npm install url-loader file-loader -D
