@@ -2,13 +2,15 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
   mode: 'development',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js',
+    filename: '[name].[contenthash].js',
     assetModuleFilename: 'assets/images/[hash][ext][query]'
 
   },
@@ -37,9 +39,16 @@ module.exports = {
       },
       {
         test: /\.(woff|woff2)$/,
-        type: 'asset/resource',
-        generator: {
-          filename: 'assets/fonts/[hash][ext][query]'
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 10000,
+            mimetype: "application/font-woff",
+            name: "[name].[contenthash].[ext]",
+            outputPath: "./assets/fonts/",
+            publicPath: "./assets/fonts/",
+            esModule: false,
+          },
         }
       }
     ]
@@ -50,7 +59,9 @@ module.exports = {
       template: './public/index.html',
       filename: './index.html'
     }),
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'assets/[name].[contenthash].css', 
+    }),
     new CopyPlugin({
       patterns: [
         {
@@ -59,5 +70,12 @@ module.exports = {
         }
       ]
     })
-  ]
+  ],
+  optimization: {
+    minimizer: true,
+    minimizer: [
+      new CssMinimizerPlugin(),
+      new TerserPlugin(),
+    ]
+  }
 }
