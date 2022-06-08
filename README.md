@@ -22,3 +22,5 @@ Instalación de los paquetes "dependencia de desarrollo -D"
 - npm install dotenv-webpack -D
 
 - npm install clean-webpack-plugin -D
+
+- npm install webpack-dev-server -D
