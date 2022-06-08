@@ -24,3 +24,9 @@ Instalación de los paquetes "dependencia de desarrollo -D"
 - npm install clean-webpack-plugin -D
 
 - npm install webpack-dev-server -D
+
+- npm install webpack-bundle-analyzer -D
+  "para generar un reporte de la compilación con webpack"
+    npx webpack --profile --json > stats.json
+  "para ver el reporte visualmente"
+    npx webpack-bundle-analyzer stats.json
