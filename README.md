@@ -18,3 +18,5 @@ Instalación de los paquetes "dependencia de desarrollo -D"
 - npm install url-loader file-loader -D
 
 - npm install css-minimizer-webpack-plugin terser-webpack-plugin -D
+
+- npm install dotenv-webpack -D
